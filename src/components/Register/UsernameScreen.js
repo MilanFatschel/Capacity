@@ -1,10 +1,9 @@
 import React from "react";
 
 import { StyleSheet, Button, View, Text } from "react-native";
-import { TextField } from 'react-native-material-textfield';
+import { TextField } from "react-native-material-textfield";
 
 export default class UsernameScreen extends React.Component {
-
   // Constants
   minUsernameLength = 3;
   maxUsernameLength = 15;
@@ -12,48 +11,41 @@ export default class UsernameScreen extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      username: '',
-      errorText: '',
+      username: "",
+      errorText: "",
       isUsernameValidated: false,
     };
   }
 
-  componentDidMount() {
-  }
+  componentDidMount() {}
 
   handleOnUsernameTextChange(username) {
     this.validateUsername(username);
   }
 
   isFormValidated() {
-    return this.state.isUsernameValidated
+    return this.state.isUsernameValidated;
   }
 
   validateUsername(username) {
     if (username.length < this.minUsernameLength) {
       this.state.isUsernameValidated = false;
-    }
-    else if (username.length > this.maxUsernameLength) {
+    } else if (username.length > this.maxUsernameLength) {
       this.state.isUsernameValidated = false;
-    }
-    else {
+    } else {
       this.state.isUsernameValidated = true;
     }
   }
 
   getValidationErrorText(username) {
-
-    if(username.length == 0) {
-      this.state.errorText = ""
-    }
-    else if (username.length < this.minUsernameLength) {
+    if (username.length == 0) {
+      this.state.errorText = "";
+    } else if (username.length < this.minUsernameLength) {
       this.state.errorText = "Username must be at least 3 characters";
-    }
-    else if (username.length > this.maxUsernameLength) {
-      this.state.errorText = "Username must be less than 50 characters"
-    }
-    else {
-      this.state.errorText = ""
+    } else if (username.length > this.maxUsernameLength) {
+      this.state.errorText = "Username must be less than 50 characters";
+    } else {
+      this.state.errorText = "";
     }
     return this.state.errorText;
   }
@@ -62,40 +54,44 @@ export default class UsernameScreen extends React.Component {
     const styles = StyleSheet.create({
       container: {
         flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center'
+        alignItems: "center",
+        justifyContent: "center",
       },
       contentContainer: {
-        height: '60%',
-        width: '50%'
+        height: "60%",
+        width: "50%",
       },
       titleText: {
         fontSize: 20,
-        fontWeight: 'bold',
-      }
+        fontWeight: "bold",
+      },
     });
     return (
       <View style={styles.container}>
         <Text style={styles.titleText}>Pick a username</Text>
         <View style={styles.contentContainer}>
           <TextField
-            label='Username'
+            label="Username"
             error={this.getValidationErrorText(this.state.username)}
             characterRestriction={this.maxUsernameLength}
             value={this.state.username}
-            onChangeText={value => {
-              this.setState({ username: value }, this.handleOnUsernameTextChange(value));
-            }} />
+            onChangeText={(value) => {
+              this.setState(
+                { username: value },
+                this.handleOnUsernameTextChange(value)
+              );
+            }}
+          />
           <Button
             title="Continue"
             disabled={!this.isFormValidated()}
-            onPress={() => this.props.navigation.navigate(
-              'Password',
-              {
+            onPress={() =>
+              this.props.navigation.navigate("Password", {
                 firstName: this.props.navigation.state.params.firstName,
                 lastName: this.props.navigation.state.params.lastName,
-                username: this.state.username
-              })}
+                username: this.state.username,
+              })
+            }
           />
         </View>
       </View>

@@ -1,22 +1,16 @@
 import React from "react";
 
-import Map from "./Map"
-
-
+import Map from "./Map";
 
 export default class MapScreen extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-    };
+    this.state = {};
   }
 
-  componentDidMount() {
-  }
+  componentDidMount() {}
 
   render() {
-    return (
-      <Map navigation={this.props.navigation}></Map>
-    );
+    return <Map navigation={this.props.navigation}></Map>;
   }
 }

@@ -1,52 +1,53 @@
 import { createAppContainer } from "react-navigation";
 import { createStackNavigator } from "react-navigation-stack";
 
-import WelcomeScreen from "./../Welcome/WelcomeScreen"
-import LoginScreen from "./../Login/LoginScreen"
-import NameScreen from "./../Register/NameScreen"
-import UsernameScreen from "./../Register/UsernameScreen"
-import PasswordScreen from "./../Register/PasswordScreen"
-import EmailScreen from "./../Register/EmailScreen"
-import PhoneNumberScreen from "./../Register/PhoneNumberScreen"
-import ConfirmationScreen from "./../Register/ConfirmationScreen"
+import WelcomeScreen from "./../Welcome/WelcomeScreen";
+import LoginScreen from "./../Login/LoginScreen";
+import NameScreen from "./../Register/NameScreen";
+import UsernameScreen from "./../Register/UsernameScreen";
+import PasswordScreen from "./../Register/PasswordScreen";
+import EmailScreen from "./../Register/EmailScreen";
+import PhoneNumberScreen from "./../Register/PhoneNumberScreen";
+import ConfirmationScreen from "./../Register/ConfirmationScreen";
 import AppNavigationStack from "./../navigators/AppNavigator";
 
-const rootNavigationStack = createStackNavigator({
+const rootNavigationStack = createStackNavigator(
+  {
     Welcome: {
-        screen: WelcomeScreen
+      screen: WelcomeScreen,
     },
-    Login : {
-        screen: LoginScreen
+    Login: {
+      screen: LoginScreen,
     },
-    Name : {
-        screen: NameScreen,
+    Name: {
+      screen: NameScreen,
     },
-    Username : {
-        screen : UsernameScreen
+    Username: {
+      screen: UsernameScreen,
     },
-    Password : {
-        screen : PasswordScreen
+    Password: {
+      screen: PasswordScreen,
     },
-    Email : {
-        screen : EmailScreen
+    Email: {
+      screen: EmailScreen,
     },
-    PhoneNumber : {
-        screen : PhoneNumberScreen
+    PhoneNumber: {
+      screen: PhoneNumberScreen,
     },
     Confirmation: {
-        screen: ConfirmationScreen
+      screen: ConfirmationScreen,
     },
     AppNavigationStack: {
-        screen: AppNavigationStack
-    }
-},
-{
-    defaultNavigationOptions: {
-      header: null
+      screen: AppNavigationStack,
     },
-}
+  },
+  {
+    defaultNavigationOptions: {
+      header: null,
+    },
+  }
 );
 
 const RootNavigationStack = createAppContainer(rootNavigationStack);
 
-export default RootNavigationStack; 
+export default RootNavigationStack;

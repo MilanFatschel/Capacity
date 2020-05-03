@@ -1,26 +1,25 @@
 import React from "react";
 
 import { StyleSheet, Button, View, Text } from "react-native";
-import { TextField } from 'react-native-material-textfield';
-import { Auth } from 'aws-amplify';
+import { TextField } from "react-native-material-textfield";
+import { Auth } from "aws-amplify";
 
 export default class Confirmation extends React.Component {
-
-  // Constants 
+  // Constants
   minConfirmationCodeLength = 1;
 
   constructor(props) {
     super(props);
     this.state = {
-      firstName: '',
-      lastName: '',
-      username: '',
-      password: '',
-      email: '',
-      confirmationCode: '',
-      errorText: '',
+      firstName: "",
+      lastName: "",
+      username: "",
+      password: "",
+      email: "",
+      confirmationCode: "",
+      errorText: "",
       isConfirmationError: false,
-      isConfirmationCodeValidated: false
+      isConfirmationCodeValidated: false,
     };
   }
 
@@ -33,19 +32,19 @@ export default class Confirmation extends React.Component {
     this.state.phoneNumber = this.props.navigation.state.params.phoneNumber;
   }
 
-
-
   // Sign up - send initial information to aws
   confirmSignUp() {
     Auth.confirmSignUp(this.state.username, this.state.confirmationCode)
       .then(() => {
-        this.props.navigation.navigate('Welcome')
+        this.props.navigation.navigate("Welcome");
       })
-      .catch(err => this.setState({errorText: err.message, isConfirmationError: true}));
+      .catch((err) =>
+        this.setState({ errorText: err.message, isConfirmationError: true })
+      );
   }
 
   handleOnConfirmationCodeTextChange(value) {
-    this.validateConfirmationCode(value)
+    this.validateConfirmationCode(value);
   }
 
   isFormValidated() {
@@ -55,8 +54,7 @@ export default class Confirmation extends React.Component {
   validateConfirmationCode(confirmationCode) {
     if (confirmationCode.length < this.minConfirmationCodeLength) {
       this.state.isConfirmationCodeValidated = false;
-    }
-    else {
+    } else {
       this.state.isConfirmationCodeValidated = true;
     }
   }
@@ -65,37 +63,43 @@ export default class Confirmation extends React.Component {
     const styles = StyleSheet.create({
       container: {
         flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center'
+        alignItems: "center",
+        justifyContent: "center",
       },
       contentContainer: {
-        height: '60%',
-        width: '50%'
+        height: "60%",
+        width: "50%",
       },
       titleText: {
         fontSize: 20,
-        fontWeight: 'bold',
+        fontWeight: "bold",
       },
       errorText: {
-        color: 'red'
-      }
+        color: "red",
+      },
     });
     const isConfirmationError = this.state.isConfirmationError;
     let errorTextPlaceHolder;
     if (isConfirmationError) {
-      errorTextPlaceHolder= <Text style={styles.errorText}>{this.state.errorText}</Text>
+      errorTextPlaceHolder = (
+        <Text style={styles.errorText}>{this.state.errorText}</Text>
+      );
     }
     return (
       <View style={styles.container}>
         <Text style={styles.titleText}>Confirmation code has been sent!</Text>
         <View style={styles.contentContainer}>
           <TextField
-            label='Confirmation Code'
+            label="Confirmation Code"
             keyboardType="phone-pad"
             value={this.state.confirmationCode}
-            onChangeText={confirmationCode => {
-              this.setState({ confirmationCode }, this.handleOnConfirmationCodeTextChange(confirmationCode));
-            }} />
+            onChangeText={(confirmationCode) => {
+              this.setState(
+                { confirmationCode },
+                this.handleOnConfirmationCodeTextChange(confirmationCode)
+              );
+            }}
+          />
           {errorTextPlaceHolder}
           <Button
             title="Continue"

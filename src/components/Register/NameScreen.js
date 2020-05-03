@@ -2,33 +2,30 @@ import React from "react";
 import { Auth } from "aws-amplify";
 
 import { StyleSheet, Button, View, Text } from "react-native";
-import { TextField } from 'react-native-material-textfield';
-
+import { TextField } from "react-native-material-textfield";
 
 export default class NameScreen extends React.Component {
-
   // Constants
   minNameLength = 1;
 
   constructor(props) {
     super(props);
     this.state = {
-      firstName: '',
-      lastName: '',
+      firstName: "",
+      lastName: "",
       isFirstNameValidate: false,
-      isLastNameValidated: false
+      isLastNameValidated: false,
     };
   }
 
-  componentDidMount() {
-  }
+  componentDidMount() {}
 
   handleOnFirstNameTextChange(value) {
-    this.validateFirstName(value)
+    this.validateFirstName(value);
   }
 
   handleOnLastNameTextChange(value) {
-    this.validateLastName(value)
+    this.validateLastName(value);
   }
 
   isFormValidated() {
@@ -38,8 +35,7 @@ export default class NameScreen extends React.Component {
   validateFirstName(name) {
     if (name.length < this.minNameLength) {
       this.state.isFirstNameValidated = false;
-    }
-    else {
+    } else {
       this.state.isFirstNameValidated = true;
     }
   }
@@ -47,8 +43,7 @@ export default class NameScreen extends React.Component {
   validateLastName(name) {
     if (name.length < this.minNameLength) {
       this.state.isLastNameValidated = false;
-    }
-    else {
+    } else {
       this.state.isLastNameValidated = true;
     }
   }
@@ -57,43 +52,51 @@ export default class NameScreen extends React.Component {
     const styles = StyleSheet.create({
       container: {
         flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center'
+        alignItems: "center",
+        justifyContent: "center",
       },
       contentContainer: {
-        height: '60%',
-        width: '50%'
+        height: "60%",
+        width: "50%",
       },
       titleText: {
         fontSize: 20,
-        fontWeight: 'bold',
-      }
+        fontWeight: "bold",
+      },
     });
     return (
       <View style={styles.container}>
         <Text style={styles.titleText}>What's your name?</Text>
         <View style={styles.contentContainer}>
           <TextField
-            label='First Name'
+            label="First Name"
             value={this.state.firstName}
-            onChangeText={value => {
-              this.setState({ firstName: value }, this.handleOnFirstNameTextChange(value));
-            }} />
+            onChangeText={(value) => {
+              this.setState(
+                { firstName: value },
+                this.handleOnFirstNameTextChange(value)
+              );
+            }}
+          />
           <TextField
-            label='Last Name'
+            label="Last Name"
             value={this.state.lastName}
-            onChangeText={value => {
-              this.setState({ lastName: value }, this.handleOnLastNameTextChange(value));
-            }} />
+            onChangeText={(value) => {
+              this.setState(
+                { lastName: value },
+                this.handleOnLastNameTextChange(value)
+              );
+            }}
+          />
           <Button
             title="Continue"
             disabled={!this.isFormValidated()}
-            onPress={() => this.props.navigation.navigate(
-              'Username',
-              {
+            onPress={() =>
+              this.props.navigation.navigate("Username", {
                 firstName: this.state.firstName,
-                lastName: this.state.lastName
-              })}
+                lastName: this.state.lastName,
+              })
+            }
           />
         </View>
       </View>
