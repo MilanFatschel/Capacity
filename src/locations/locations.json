@@ -1,0 +1,9 @@
+{
+    "name": "27 Morton",
+    "address" : "27 1/2 Morton Street, New York, NY 10014",
+    "coords" : {
+        "latitude" : "40.731110",
+        "longitude" : "-74.004520"
+    },
+    "image_url" : "https://images.squarespace-cdn.com/content/v1/5c9d4f31ebfc7f9406151ec7/1574313116322-J4L8LE1XU5EUJANKNN2O/ke17ZwdGBToddI8pDm48kG08FzS3BR4g2gcJep3aiuR7gQa3H78H3Y0txjaiv_0fDoOvxcdMmMKkDsyUqMSsMWxHk725yiiHCCLfrh8O1z5QPOohDIaIeljMHgDF5CVlOqpeNLcJ80NK65_fV7S1UTzUSCdl6eFMXoM2H4daNBTyEV1A_rP548M4t73KzMdAdI5EkEE1z6piXq7cqJgYBQ/DSC06542-HDR.jpg?format=1500w"
+}
